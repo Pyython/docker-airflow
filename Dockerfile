@@ -44,8 +44,22 @@ RUN set -ex \
         apt-utils \
         curl \
         netcat \
-        locales \
-    && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
+        locales
+
+RUN  { \
+        echo debconf debconf/frontend select Noninteractive; \
+        echo mysql-community-server mysql-community-server/data-dir \
+            select ''; \
+        echo mysql-community-server mysql-community-server/root-pass \
+            password 'rootpass'; \
+        echo mysql-community-server mysql-community-server/re-root-pass \
+            password 'rootpass'; \
+        echo mysql-community-server mysql-community-server/remove-test-db \
+            select true; \
+    } | debconf-set-selections \
+    && apt-get install -y libmysqlclient-dev mysql-server
+
+RUN sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
