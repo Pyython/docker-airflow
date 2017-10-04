@@ -3,12 +3,12 @@ services:
     postgres:
         image: postgres:9.6
         environment:
-            - POSTGRES_USER=airflow
-            - POSTGRES_PASSWORD=airflow
-            - POSTGRES_DB=airflow
+            - POSTGRES_USER=${PG_USER}
+            - POSTGRES_PASSWORD=${PG_PASS}
+            - POSTGRES_DB=${PG_DATABASE}
 
     webserver:
-        image: puckel/docker-airflow:1.8.2
+        image: pyython/docker-airflow
         restart: always
         depends_on:
             - postgres
