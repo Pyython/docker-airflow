@@ -20,11 +20,13 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - BASE_TASK_URL=/usr/local/airflow/tasks
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./tasks:/usr/local/airflow/tasks
         ports:
             - "8080:8080"
         command: webserver
@@ -47,10 +49,12 @@ services:
             - webserver
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./tasks:/usr/local/airflow/tasks
         environment:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - BASE_TASK_URL=/usr/local/airflow/tasks
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}
@@ -63,9 +67,11 @@ services:
             - scheduler
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./tasks:/usr/local/airflow/tasks
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - BASE_TASK_URL=/usr/local/airflow/tasks
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}

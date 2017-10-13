@@ -17,8 +17,10 @@ services:
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
+            - BASE_TASK_URL=/usr/local/airflow/tasks
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./tasks:/usr/local/airflow/tasks
         ports:
             - 8080:8080
         command: webserver
