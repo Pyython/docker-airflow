@@ -20,7 +20,7 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            - BASE_TASK_URL=/usr/local/airflow/tasks
+            - BASE_TASK_PATH=/usr/local/airflow/tasks/
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}
@@ -54,7 +54,7 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            - BASE_TASK_URL=/usr/local/airflow/tasks
+            - BASE_TASK_PATH=/usr/local/airflow/tasks/
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}
@@ -71,7 +71,7 @@ services:
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
-            - BASE_TASK_URL=/usr/local/airflow/tasks
+            - BASE_TASK_PATH=/usr/local/airflow/tasks/
             # - POSTGRES_USER=${PG_USER}
             # - POSTGRES_PASSWORD=${PG_PASS}
             # - POSTGRES_DB=${PG_DATABASE}
