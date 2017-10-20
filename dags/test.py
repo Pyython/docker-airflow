@@ -7,7 +7,7 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from datetime import datetime, timedelta
 
-BASE_TASK_URL = os.environ['BASE_TASK_URL']
+BASE_TASK_PATH = os.environ['BASE_TASK_PATH']
 
 default_args = {
     'owner': 'airflow',
@@ -27,7 +27,7 @@ default_args = {
 dag = DAG(
     'test', default_args=default_args, schedule_interval=timedelta(1))
 
-test1_template = 'python ' + BASE_TASK_URL + '/test1.py'
+test1_template = 'python ' + BASE_TASK_PATH + '/test1.py'
 
 test1 = BashOperator(
     task_id='test1',
