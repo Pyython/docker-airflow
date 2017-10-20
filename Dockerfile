@@ -23,6 +23,7 @@ ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+
 RUN set -ex \
     && buildDeps=' \
         python3-dev \
@@ -42,7 +43,6 @@ RUN set -ex \
         python3-pip \
         python3-requests \
         apt-utils \
-        net-tools \
         curl \
         netcat \
         locales
