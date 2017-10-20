@@ -1,3 +1,4 @@
+PG_HOST=postgres
 PG_USER=airflow
 PG_PASS=airflow
 PG_DATABASE=airflow
