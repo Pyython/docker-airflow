@@ -16,6 +16,12 @@ TRY_LOOP="20"
 
 : ${FERNET_KEY:=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")}
 
+# Sets base url to IP address instead of localhost
+if ["$(uname -s)" = "Linux"] then
+  MACHINE_IP="$(ifconfig eth0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
+  sed -i "s/base_url = http://localhost:8080/base_url = $MACHINE_IP:8080/" "$AIRFLOW_HOME"/airflow.cfg
+fi
+
 # Load DAGs examples (default: Yes)
 if [ "$LOAD_EX" = "n" ]; then
     sed -i "s/load_examples = True/load_examples = False/" "$AIRFLOW_HOME"/airflow.cfg
